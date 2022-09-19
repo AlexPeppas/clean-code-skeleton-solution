@@ -8,9 +8,9 @@ namespace GotSpaceSolution.Controllers
     public class RidesController : ControllerBase
     {
         private readonly ILogger<RidesController> logger;
-        private readonly IRideRouteService rideRouteService;
+        private readonly IRideService rideRouteService;
 
-        public RidesController(ILogger<RidesController> logger, IRideRouteService rideRouteService)
+        public RidesController(ILogger<RidesController> logger, IRideService rideRouteService)
         {
             this.logger = logger;
             this.rideRouteService = rideRouteService;
@@ -19,25 +19,16 @@ namespace GotSpaceSolution.Controllers
         [HttpPost(Name = "CreateRouteRide")]
         public async Task<IActionResult> CreateRouteRide (CreateRideRoute entity, CancellationToken cancellationToken = default)
         {
-            var dbEntiy = new RideRouteEntity 
+            var dbEntiy = new RideEntity 
             { 
                 DestinationName = entity.DestinationName,
                 SourceName = entity.SourceName,
-                PassengersCount = entity.PassengersCount
+                NumberOfSeats = entity.PassengersCount
             };
 
-            await rideRouteService.CreateNewRideRouteAsync(dbEntiy, cancellationToken);
+            await rideRouteService.CreateNewRideAsync(dbEntiy, cancellationToken);
 
             return Ok();
-        }
-
-        [HttpGet(Name = "GetRouteRide")]
-        public async Task<IActionResult> GetRouteRide(Guid id, CancellationToken cancellationToken = default)
-        {
-
-            var result = await rideRouteService.GetNewRideRouteAsync(id, cancellationToken);
-
-            return Ok(result);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using GotSpaceSolution.Common;
 using System.Collections.Concurrent;
 
-namespace GotSpace.Infrastructure
+namespace GotSpaceSolution.Infrastructure
 {
     public abstract class BaseRepository<T> : IBaseRepository
         where T : BaseEntity, new()

@@ -1,4 +1,4 @@
-﻿namespace GotSpace.Infrastructure
+﻿namespace GotSpaceSolution.Infrastructure
 {
     public sealed class EntityNotFoundException : Exception
     {
