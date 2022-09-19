@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GotSpaceSolution.Infrastrucutre
 {
-    public class RidesRepository : BaseRepository<BaseEntity>
+    public class BookingsRepository : BaseRepository<BaseEntity>
     {
     }
 }
