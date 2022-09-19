@@ -17,11 +17,27 @@ namespace GotSpaceSolution.Controllers
         }
 
         [HttpPost(Name = "CreateRouteRide")]
-        public async Task<IActionResult> CreateRouteRide (RideRouteEntity entity, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> CreateRouteRide (CreateRideRoute entity, CancellationToken cancellationToken = default)
         {
-            await rideRouteService.CreateNewRideRouteAsync(entity, cancellationToken);
+            var dbEntiy = new RideRouteEntity 
+            { 
+                DestinationName = entity.DestinationName,
+                SourceName = entity.SourceName,
+                PassengersCount = entity.PassengersCount
+            };
+
+            await rideRouteService.CreateNewRideRouteAsync(dbEntiy, cancellationToken);
 
             return Ok();
+        }
+
+        [HttpGet(Name = "GetRouteRide")]
+        public async Task<IActionResult> GetRouteRide(Guid id, CancellationToken cancellationToken = default)
+        {
+
+            var result = await rideRouteService.GetNewRideRouteAsync(id, cancellationToken);
+
+            return Ok(result);
         }
     }
 }
