@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 
 namespace GotSpace.Infrastructure
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T>
+    public abstract class BaseRepository<T> : IBaseRepository
         where T : BaseEntity, new()
     {
         private ConcurrentDictionary<Guid, BaseEntity> localStore = new();

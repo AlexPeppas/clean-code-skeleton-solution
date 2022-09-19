@@ -2,7 +2,9 @@
 
 namespace GotSpace.Infrastructure
 {
-    public interface IBaseRepository<T> where T : BaseEntity, new()
+    public interface IBaseRepository
+    { }
+    /*<T> where T : BaseEntity, new()
     {
         Task CreateAsync(T entity, CancellationToken cancellationToken);
 
@@ -11,5 +13,5 @@ namespace GotSpace.Infrastructure
         Task UpdateAsync(T entity, CancellationToken cancellation);
 
         Task DeleteAsync(Guid id, CancellationToken cancellation);
-    }
+    }*/
 }
