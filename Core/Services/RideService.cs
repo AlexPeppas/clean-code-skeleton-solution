@@ -2,7 +2,7 @@
 using GotSpace.Infrastructure;
 using GotSpaceSolution.Common;
 using GotSpaceSolution.Infrastructure;
-using GotSpaceSolution.Infrastrucutre;
+using System.Security.Principal;
 
 namespace GotSpaceSolution.Core
 {
@@ -19,8 +19,8 @@ namespace GotSpaceSolution.Core
         {
             entity.Timestamp = DateTime.UtcNow;
             entity.IsDeleted = false;
-
-            var ridesRepository = this.repositoryProvider.GetRepository<RidesRepository>();
+            
+            var ridesRepository = this.repositoryProvider.GetRepository<RidesRepository>(nameof(RidesRepository));
             await ridesRepository.CreateAsync(entity, cancellationToken);
         }
     }

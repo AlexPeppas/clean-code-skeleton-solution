@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GotSpaceSolution.Infrastrucutre
+namespace GotSpaceSolution.Infrastructure
 {
     public class RidesRepository : BaseRepository<BaseEntity>
     {

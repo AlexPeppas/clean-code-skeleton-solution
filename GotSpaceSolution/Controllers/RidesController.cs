@@ -19,7 +19,15 @@ namespace GotSpaceSolution.Controllers
         [HttpPost(Name = "CreateRouteRide")]
         public async Task<IActionResult> CreateRouteRide (RideEntity entity, CancellationToken cancellationToken = default)
         {
-            await rideRouteService.CreateNewRideAsync(entity, cancellationToken);
+            // Update This
+            var dbEntiy = new RideEntity 
+            { 
+                DestinationName = entity.DestinationName,
+                SourceName = entity.SourceName,
+                NumberOfSeats = entity.NumberOfSeats
+            };
+
+            await rideRouteService.CreateNewRideAsync(dbEntiy, cancellationToken);
 
             return Ok();
         }

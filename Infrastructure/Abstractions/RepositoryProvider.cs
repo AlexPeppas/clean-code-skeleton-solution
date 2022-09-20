@@ -1,26 +1,23 @@
-﻿using GotSpace.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Concurrent;
 
 namespace GotSpaceSolution.Infrastructure
 {
     public sealed class RepositoryProvider: IRepositoryProvider
     {
         private readonly IServiceProvider serviceProvider;
+        private ConcurrentDictionary<string,IBaseRepository> repositoryCache = new();
 
         public RepositoryProvider (IServiceProvider serviceProvider)
         {
             this.serviceProvider = serviceProvider;
         }
 
-        public T GetRepository<T>()
+        public T GetRepository<T>(string repositoryName)
             where T : class, IBaseRepository
         {
-            return ActivatorUtilities.CreateInstance<T>(serviceProvider);
+            return (T) repositoryCache.GetOrAdd(repositoryName, ActivatorUtilities.CreateInstance<T>(serviceProvider));
+            
         }
     }
 }
