@@ -16,7 +16,7 @@ namespace GotSpaceSolution.Controllers
             this.bookingService = bookingService;
         }
 
-        [HttpPost(Name = "CreateBooking")]
+        [HttpPost("/CreateBooking")]
         public async Task<IActionResult> CreateBooking(BookingEntity entity, CancellationToken cancellationToken = default)
         {
             await bookingService.CreateNewBookingAsync(entity, cancellationToken);

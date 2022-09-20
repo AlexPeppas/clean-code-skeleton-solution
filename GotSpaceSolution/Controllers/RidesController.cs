@@ -16,7 +16,7 @@ namespace GotSpaceSolution.Controllers
             this.rideRouteService = rideService;
         }
 
-        [HttpPost(Name = "CreateRouteRide")]
+        [HttpPost("/CreateRouteRide")]
         public async Task<IActionResult> CreateRouteRide (CreateRide entity, CancellationToken cancellationToken = default)
         {
             
