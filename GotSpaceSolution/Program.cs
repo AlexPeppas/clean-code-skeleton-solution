@@ -13,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IRepositoryProvider, RepositoryProvider>();
 builder.Services.AddSingleton<IRideService, RideService>();
+builder.Services.AddSingleton<IUserService, UserService>();
 
 var app = builder.Build();
 
