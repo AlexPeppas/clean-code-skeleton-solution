@@ -20,7 +20,7 @@ namespace GotSpaceSolution.Core
             entity.Timestamp = DateTime.UtcNow;
             entity.IsDeleted = false;
 
-            var bookingRepository = this.repositoryProvider.GetRepository<BookingsRepository>();
+            var bookingRepository = this.repositoryProvider.GetRepository<BookingsRepository>(nameof(BookingsRepository));
             await bookingRepository.CreateAsync(entity, cancellationToken);
         }
     }
