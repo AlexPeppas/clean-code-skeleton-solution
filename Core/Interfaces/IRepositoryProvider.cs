@@ -1,5 +1,7 @@
 ﻿
-namespace GotSpaceSolution.Infrastructure
+using GotSpaceSolution.Infrastructure;
+
+namespace GotSpaceSolution.Core
 {
     public interface IRepositoryProvider
     {
