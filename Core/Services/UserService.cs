@@ -18,5 +18,12 @@ namespace GotSpaceSolution.Core
             var userRepository = this.repositoryProvider.GetRepository<UsersRepository>(nameof(UsersRepository));
             await userRepository.CreateAsync(entity, cancellationToken);
         }
+
+        public async  Task<UserEntity>ReadAsyncByUserName(string userName, CancellationToken cancellationToken)
+        {
+            var userRepository = this.repositoryProvider.GetRepository<UsersRepository>(nameof(UsersRepository));
+            return await userRepository.ReadAsyncByUserName(userName, cancellationToken);
+        }
+
     }
 }
