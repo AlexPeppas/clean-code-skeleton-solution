@@ -4,7 +4,7 @@ using GotSpaceSolution.Infrastructure;
 
 namespace GotSpaceSolution.Core
 {
-    public class UsersRepository : BaseRepository<BaseEntity>
+    public class UsersRepository : BaseRepository<UserEntity>
     {
     }
 }
