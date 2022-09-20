@@ -8,9 +8,13 @@ namespace GotSpaceSolution.Core
 
         public UserEntity CreatedBy { get; set; } 
 
+        public DateTime CreatedDate { get; set; }
+
+        public DateTime RideActivation { get; set; }
+
         public int NumberOfSeats { get; set; }
 
-        public Boolean OnlyWoman { get; set; }
+        public bool OnlyWomen { get; set; }
 
         public string SourceName { get; set; }
 
