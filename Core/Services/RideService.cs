@@ -23,13 +23,5 @@ namespace GotSpaceSolution.Core
             var ridesRepository = this.repositoryProvider.GetRepository<RidesRepository>();
             await ridesRepository.CreateAsync(entity, cancellationToken);
         }
-
-        public async Task<RideRouteEntity> GetNewRideRouteAsync(Guid id, CancellationToken cancellationToken)
-        {
-
-            var ridesRepository = this.repositoryProvider.GetRepository<RidesRepository>();
-            var result = await ridesRepository.ReadAsync(id, cancellationToken);
-            return (RideRouteEntity)result;
-        }
     }
 }

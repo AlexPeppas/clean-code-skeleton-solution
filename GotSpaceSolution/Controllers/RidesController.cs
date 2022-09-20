@@ -23,14 +23,5 @@ namespace GotSpaceSolution.Controllers
 
             return Ok();
         }
-
-        [HttpGet(Name = "GetRouteRide")]
-        public async Task<IActionResult> GetRouteRide(Guid id, CancellationToken cancellationToken = default)
-        {
-
-            var result = await rideRouteService.GetNewRideRouteAsync(id, cancellationToken);
-
-            return Ok(result);
-        }
     }
 }
