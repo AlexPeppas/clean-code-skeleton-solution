@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IRepositoryProvider, RepositoryProvider>();
-builder.Services.AddSingleton<IRideRouteService, RideRouteService>();
+builder.Services.AddSingleton<IRideService, RideService>();
 
 var app = builder.Build();
 

@@ -2,20 +2,20 @@
 using GotSpace.Infrastructure;
 using GotSpaceSolution.Common;
 using GotSpaceSolution.Infrastructure;
-using Infrastructure.Persistence.Repositories;
+using GotSpaceSolution.Infrastrucutre;
 
 namespace GotSpaceSolution.Core
 {
-    public class RideRouteService : IRideRouteService
+    public class RideService : IRideService
     {
         private readonly IRepositoryProvider repositoryProvider;
 
-        public RideRouteService(IRepositoryProvider repositoryProvider)
+        public RideService(IRepositoryProvider repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider;
         }
 
-        public async Task CreateNewRideRouteAsync(RideRouteEntity entity, CancellationToken cancellationToken)
+        public async Task CreateNewRideAsync(RideEntity entity, CancellationToken cancellationToken)
         {
             entity.Timestamp = DateTime.UtcNow;
             entity.IsDeleted = false;
