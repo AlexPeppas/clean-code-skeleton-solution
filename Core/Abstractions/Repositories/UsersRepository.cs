@@ -41,6 +41,27 @@ namespace GotSpaceSolution.Core
             throw new Exception($"User Entity with {userName} is not found"); //entity has been deleted
 
         }
+
+        public async Task<UserEntity> LoginUserAsync(string userName, string password, CancellationToken cancellationToken)
+        {
+            if (userName is null || password is null)
+                throw new EntityIdentifierException(nameof(UserEntity));
+
+            await Task.CompletedTask; // dummy to trick async with await. Remove when actualy SQL integration applies
+
+            if (userStore.TryGetValue(userName, out var entity))
+            {
+                if (entity.IsDeleted)
+                    throw new EntityNotFoundException(entity.Id); //entity has been deleted
+
+                if (entity.Passsword != password)
+                    throw new Exception("either incorrect username or/and password were provided");
+
+                return entity;
+            }
+
+            throw new Exception("either incorrect username or/and password were provided");
+        }
     }
 
 }

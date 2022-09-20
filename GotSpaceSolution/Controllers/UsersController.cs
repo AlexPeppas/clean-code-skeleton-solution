@@ -27,8 +27,29 @@ namespace GotSpaceSolution.Controllers
         [HttpGet ("/GetUser")]
         public async Task<IActionResult> GetUser(string userName, CancellationToken cancellationToken = default)
         {
-            var userEntity = await userService.ReadAsyncByUserName(userName, cancellationToken);
-            return Ok(userEntity);
+            try
+            {
+                var userEntity = await userService.ReadAsyncByUserName(userName, cancellationToken);
+                return Ok(userEntity);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpGet("/LoginUser")]
+        public async Task<IActionResult> LoginUser(string userName, string password, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                var userEntity = await userService.LoginUserAsync(userName, password, cancellationToken);
+                return Ok(userEntity);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
         }
     }
 }
