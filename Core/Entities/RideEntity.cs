@@ -10,7 +10,7 @@ namespace GotSpaceSolution.Core
 
         public DateTime CreatedDate { get; set; }
 
-        public DateTime RideActivation { get; set; }
+        public DateTime RideTime { get; set; }
 
         public int NumberOfSeats { get; set; }
 

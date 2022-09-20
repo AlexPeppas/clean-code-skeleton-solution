@@ -28,7 +28,7 @@ namespace GotSpaceSolution.Controllers
                 OnlyWomen = entity.OnlyWomen,
                 CreatedDate = DateTime.UtcNow,
                 CreatedBy = entity.CreatedBy,
-                RideActivation = entity.RideActivation,
+                RideTime = entity.RideActivation,
             };
 
             await rideRouteService.CreateNewRideAsync(dbEntiy, cancellationToken);
