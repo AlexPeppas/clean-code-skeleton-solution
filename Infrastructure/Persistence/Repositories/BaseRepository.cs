@@ -6,7 +6,7 @@ namespace GotSpaceSolution.Infrastructure
     public abstract class BaseRepository<T> : IBaseRepository
         where T : BaseEntity, new()
     {
-        private ConcurrentDictionary<Guid, BaseEntity> localStore = new();
+        protected ConcurrentDictionary<Guid, BaseEntity> localStore = new();
 
         public virtual async Task CreateAsync(T entity, CancellationToken cancellationToken)
         {

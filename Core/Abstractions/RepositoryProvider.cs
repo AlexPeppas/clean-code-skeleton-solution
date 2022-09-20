@@ -1,7 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using GotSpaceSolution.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Concurrent;
 
-namespace GotSpaceSolution.Infrastructure
+namespace GotSpaceSolution.Core
 {
     public sealed class RepositoryProvider: IRepositoryProvider
     {

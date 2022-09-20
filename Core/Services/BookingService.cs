@@ -1,9 +1,4 @@
 ﻿
-using GotSpace.Infrastructure;
-using GotSpaceSolution.Common;
-using GotSpaceSolution.Infrastructure;
-using GotSpaceSolution.Infrastrucutre;
-
 namespace GotSpaceSolution.Core
 {
     public class BookingService : IBookingService
