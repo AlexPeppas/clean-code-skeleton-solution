@@ -35,5 +35,13 @@ namespace GotSpaceSolution.Controllers
 
             return Ok();
         }
+
+        [HttpPost("/SearchFilteredRides")]
+        public async Task<IActionResult> SearchFilteredRidesAsync(FilteredRides filter, CancellationToken cancellationToken)
+        {
+            var rides = await rideRouteService.SearchFilteredRidesAsync(filter, cancellationToken);
+            
+            return Ok(rides);
+        }
     }
 }
