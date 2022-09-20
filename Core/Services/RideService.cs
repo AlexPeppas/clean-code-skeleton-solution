@@ -19,6 +19,7 @@ namespace GotSpaceSolution.Core
         {
             entity.Timestamp = DateTime.UtcNow;
             entity.IsDeleted = false;
+            entity.Status = (entity.RideActivation > DateTime.UtcNow) ? RideEnums.RideStatus.Pending.ToString() : RideEnums.RideStatus.Active.ToString();
             
             var ridesRepository = this.repositoryProvider.GetRepository<RidesRepository>(nameof(RidesRepository));
             await ridesRepository.CreateAsync(entity, cancellationToken);

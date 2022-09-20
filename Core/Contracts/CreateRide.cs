@@ -18,5 +18,14 @@ namespace GotSpaceSolution.Core
 
         [JsonProperty(PropertyName = "numberOfSeats", Required = Required.Always)]
         public int NumberOfSeats { get; set; }
+
+        [JsonProperty(PropertyName = "createdBy", Required = Required.Always)]
+        public UserEntity CreatedBy { get; set; }
+
+        [JsonProperty(PropertyName = "rideActivation", Required = Required.Always)]
+        public DateTime RideActivation { get; set; }
+
+        [JsonProperty(PropertyName = "onlyWomen", Required = Required.Always)]
+        public bool OnlyWomen { get; set; }
     }
 }
