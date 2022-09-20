@@ -19,7 +19,7 @@ namespace GotSpaceSolution.Core
         {
             entity.Timestamp = DateTime.UtcNow;
             entity.IsDeleted = false;
-
+            
             var ridesRepository = this.repositoryProvider.GetRepository<RidesRepository>(nameof(RidesRepository));
             await ridesRepository.CreateAsync(entity, cancellationToken);
         }

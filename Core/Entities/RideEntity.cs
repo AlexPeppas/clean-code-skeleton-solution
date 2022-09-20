@@ -6,7 +6,7 @@ namespace GotSpaceSolution.Core
     {
         public Guid RideId { get; set; }
 
-        // public UserEntity CreatedBy { get; set; }
+        public UserEntity CreatedBy { get; set; } 
 
         public int NumberOfSeats { get; set; }
 
@@ -14,9 +14,9 @@ namespace GotSpaceSolution.Core
 
         public string SourceName { get; set; }
 
-        public string DestinationName { get; set; }
+        public string DestinationName { get; set; } 
 
         public string Status { get; set; }
-
+        
     }
 }
