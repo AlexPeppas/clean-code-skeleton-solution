@@ -11,12 +11,13 @@ namespace GotSpaceSolution.Core
 
         }
 
-        public async Task CreateNewUserAsync(UserEntity entity, CancellationToken cancellationToken)
+        public async Task<UserEntity> CreateNewUserAsync(UserEntity entity, CancellationToken cancellationToken)
         {
             entity.Timestamp = DateTime.UtcNow;
             entity.IsDeleted = false;
             var userRepository = this.repositoryProvider.GetRepository<UsersRepository>(nameof(UsersRepository));
-            await userRepository.CreateAsync(entity, cancellationToken);
+            var entityCreated = await userRepository.CreateAsync(entity, cancellationToken);
+            return entityCreated;
         }
 
         public async  Task<UserEntity>ReadAsyncByUserName(string userName, CancellationToken cancellationToken)

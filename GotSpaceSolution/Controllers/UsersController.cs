@@ -20,8 +20,15 @@ namespace GotSpaceSolution.Controllers
         [HttpPost("/CreateUser")]
         public async Task<IActionResult> CreateUser(UserEntity entity, CancellationToken cancellationToken = default)
         {
-            await userService.CreateNewUserAsync(entity, cancellationToken);
-            return Ok();
+            try
+            {
+                var userEntity = await userService.CreateNewUserAsync(entity, cancellationToken);
+                return Ok(userEntity);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
         }
 
         [HttpGet ("/GetUser")]

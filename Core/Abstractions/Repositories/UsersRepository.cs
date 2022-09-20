@@ -10,7 +10,7 @@ namespace GotSpaceSolution.Core
         private ConcurrentDictionary<string, UserEntity> userStore = new();
 
   
-        public override async Task CreateAsync(UserEntity entity, CancellationToken cancellationToken)
+        public override async Task<UserEntity> CreateAsync(UserEntity entity, CancellationToken cancellationToken)
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
@@ -21,6 +21,7 @@ namespace GotSpaceSolution.Core
             userStore.TryAdd(entity.UserName, entity);
             await base.CreateAsync(entity, cancellationToken);
             await Task.CompletedTask; // dummy to trick async with await. Remove when actualy SQL integration applies
+            return entity;
         }
 
         public async Task<UserEntity> ReadAsyncByUserName(string userName, CancellationToken cancellationToken)
