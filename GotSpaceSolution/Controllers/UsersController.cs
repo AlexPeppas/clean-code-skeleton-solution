@@ -29,7 +29,7 @@ namespace GotSpaceSolution.Controllers
         {
             try
             {
-                var userEntity = await userService.ReadAsyncByUserName(userName, cancellationToken);
+                var userEntity = await userService.ReadByUserNameAsync(userName, cancellationToken);
                 return Ok(userEntity);
             }
             catch (Exception)

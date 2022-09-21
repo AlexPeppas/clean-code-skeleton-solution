@@ -7,5 +7,7 @@
         Task<BookingEntity> ReadAsync(Guid id, CancellationToken cancellationToken);
 
         Task CancelBookingAsync(Guid id, CancellationToken cancellationToken);
+
+        Task CancelBookingsByRideIdAsync (Guid rideId, CancellationToken cancellationToken);
     }
 }
