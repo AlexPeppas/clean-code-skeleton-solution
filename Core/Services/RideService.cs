@@ -25,10 +25,13 @@ namespace GotSpaceSolution.Core
             await ridesRepository.CreateAsync(entity, cancellationToken);
 
             var bookingsRepository = this.repositoryProvider.GetRepository<BookingsRepository>(nameof(BookingsRepository));
+
+            var userRepository = this.repositoryProvider.GetRepository<UsersRepository>(nameof(UsersRepository));
+            var user = await userRepository.ReadAsync(entity.UserId, cancellationToken);
             var booking = new BookingEntity
             {
                 NumberOfSeats = entity.AllocatedNumberOfSeats,
-                User = joinOptions.User,
+                User = user,
                 Ride = entity
             };
 
