@@ -36,5 +36,19 @@ namespace GotSpaceSolution.Controllers
                 return NotFound();
             }
         }
+
+        [HttpDelete("/CancelBooking")]
+        public async Task CancelBooking(Guid id, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                await bookingService.CancelBookingAsync(id, cancellationToken);
+                Ok();
+            }
+            catch (Exception)
+            {
+                NotFound();
+            }
+        }
     }
 }

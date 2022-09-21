@@ -24,7 +24,7 @@ namespace GotSpaceSolution.Core
             await bookingRepository.CreateAsync(entity, cancellationToken);
         }
 
-        public async void CancelBooking(Guid id, CancellationToken cancellationToken)
+        public async Task CancelBookingAsync(Guid id, CancellationToken cancellationToken)
         {
             var entity = await this.ReadAsync(id, cancellationToken);
             await this.UpdateRideAllocatedSeats(entity.Ride.Id, entity.NumberOfSeats, false, cancellationToken);
