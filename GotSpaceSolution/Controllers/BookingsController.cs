@@ -20,8 +20,21 @@ namespace GotSpaceSolution.Controllers
         public async Task<IActionResult> CreateBooking(BookingEntity entity, CancellationToken cancellationToken = default)
         {
             await bookingService.CreateNewBookingAsync(entity, cancellationToken);
-
             return Ok();
+        }
+
+        [HttpGet("/GetBooking")]
+        public async Task<IActionResult> GetBooking(Guid id, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                var bookingEntity = await bookingService.ReadAsync(id, cancellationToken);
+                return Ok(bookingEntity);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
         }
     }
 }

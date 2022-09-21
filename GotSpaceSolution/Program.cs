@@ -12,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IRepositoryProvider, RepositoryProvider>();
+builder.Services.AddSingleton<IBookingService, BookingService>();
 builder.Services.AddSingleton<IRideService, RideService>();
 builder.Services.AddSingleton<IUserService, UserService>();
 

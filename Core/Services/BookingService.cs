@@ -18,5 +18,11 @@ namespace GotSpaceSolution.Core
             var bookingRepository = this.repositoryProvider.GetRepository<BookingsRepository>(nameof(BookingsRepository));
             await bookingRepository.CreateAsync(entity, cancellationToken);
         }
+
+        public async Task<BookingEntity> ReadAsync(Guid id, CancellationToken cancellationToken)
+        {
+            var bookingRepository = this.repositoryProvider.GetRepository<BookingsRepository>(nameof(BookingsRepository));
+            return await bookingRepository.ReadAsync(id, cancellationToken);
+        }
     }
 }
