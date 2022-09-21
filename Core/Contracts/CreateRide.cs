@@ -23,7 +23,7 @@ namespace GotSpaceSolution.Core
         public int TotalNumberOfSeats { get; set; }
 
         [JsonProperty(PropertyName = "createdBy", Required = Required.Always)]
-        public UserEntity CreatedBy { get; set; }
+        public Guid UserId { get; set; }
 
         [JsonProperty(PropertyName = "rideActivation", Required = Required.Always)]
         public DateTime RideActivation { get; set; }

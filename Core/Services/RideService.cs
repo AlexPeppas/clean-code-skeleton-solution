@@ -31,8 +31,8 @@ namespace GotSpaceSolution.Core
             var booking = new BookingEntity
             {
                 NumberOfSeats = entity.AllocatedNumberOfSeats,
-                User = user,
-                Ride = entity
+                UserId = user.Id,
+                RideId = entity.Id
             };
 
             await bookingsRepository.CreateAsync(booking, cancellationToken);
@@ -50,8 +50,8 @@ namespace GotSpaceSolution.Core
                 var booking = new BookingEntity
                 {
                     NumberOfSeats = joinOptions.NumberOfSeatsRequested,
-                    User = joinOptions.User,
-                    Ride = ride
+                    UserId = joinOptions.User.Id,
+                    RideId = ride.Id
                 };
 
                 await bookingsRepository.CreateAsync(booking, cancellationToken);

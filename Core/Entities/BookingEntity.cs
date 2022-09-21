@@ -4,11 +4,9 @@ namespace GotSpaceSolution.Core
 {
     public sealed class BookingEntity : BaseEntity
     {
-        public Guid BookingId { get; set; }
-
-        public RideEntity Ride { get; set; }
+        public Guid RideId { get; set; }
         
-        public UserEntity User { get; set; }
+        public Guid UserId { get; set; }
 
         public int NumberOfSeats { get; set; }
     }

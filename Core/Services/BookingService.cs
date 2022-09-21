@@ -20,7 +20,7 @@ namespace GotSpaceSolution.Core
             var bookingRepository = this.repositoryProvider.GetRepository<BookingsRepository>(nameof(BookingsRepository));
             var updateSeatsDto = new UpdateSeatsDto
             {
-                RideId = entity.Ride.Id,
+                RideId = entity.RideId,
                 BookingNumberOfSeats = entity.NumberOfSeats,
                 ToAdd = true
             };
@@ -34,7 +34,7 @@ namespace GotSpaceSolution.Core
             var entity = await this.ReadAsync(id, cancellationToken);
             var updateSeatsDto = new UpdateSeatsDto
             {
-                RideId = entity.Ride.Id,
+                RideId = entity.RideId,
                 BookingNumberOfSeats = entity.NumberOfSeats,
                 ToAdd = false
             };
