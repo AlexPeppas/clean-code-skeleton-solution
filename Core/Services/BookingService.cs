@@ -71,7 +71,6 @@ namespace GotSpaceSolution.Core
             return false;
         }
 
-
         private async Task UpdateRideAllocatedSeats(UpdateSeatsDto updateSeatsDto, CancellationToken cancellationToken)
         {
             var ridesRepository = this.repositoryProvider.GetRepository<RidesRepository>(nameof(RidesRepository));
