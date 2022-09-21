@@ -61,12 +61,12 @@ namespace GotSpaceSolution.Core
             var rideRepository = this.repositoryProvider.GetRepository<RidesRepository>(nameof(RidesRepository));
             var rideEntity = await rideRepository.ReadAsync(bookingEntity.RideId, cancellationToken);
            
-            var availableNumberOfSeats = rideEntity.TotalNumberOfSeats - rideEntity.AllocatedNumberOfSeats - bookingEntity.NumberOfSeats;
+            var availableNumberOfSeats = rideEntity.TotalNumberOfSeats - rideEntity.AllocatedNumberOfSeats + bookingEntity.NumberOfSeats;
 
             if (newNumberOfSeats <= availableNumberOfSeats)
             {
+                rideEntity.AllocatedNumberOfSeats = rideEntity.AllocatedNumberOfSeats - bookingEntity.NumberOfSeats + newNumberOfSeats;
                 bookingEntity.NumberOfSeats = newNumberOfSeats;
-                rideEntity.AllocatedNumberOfSeats = newNumberOfSeats;
                 return true;
             }
             return false;
