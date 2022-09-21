@@ -12,7 +12,7 @@ namespace GotSpaceSolution.Core
 
         public DateTime RideTime { get; set; }
 
-        public int RequestedNumberOfSeats { get; set; }
+        public int AllocatedNumberOfSeats { get; set; }
 
         public int TotalNumberOfSeats { get; set; }
         

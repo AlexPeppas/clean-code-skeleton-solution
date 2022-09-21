@@ -21,6 +21,7 @@ namespace GotSpaceSolution.Core
 
         public void CancelBooking()
         {
+            // lookup ride with rideId from bookingENtity.Ride.Id
             // revert number of seats 
             // isDeleted = true for the corresponding booking
         }
