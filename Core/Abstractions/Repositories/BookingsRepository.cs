@@ -7,6 +7,7 @@ namespace GotSpaceSolution.Core
 {
     public class BookingsRepository : BaseRepository<BookingEntity>
     {
+
         protected ConcurrentDictionary<Guid, IEnumerable<BookingEntity>> bookingsByUserId = new ConcurrentDictionary<Guid, IEnumerable<BookingEntity>>();
         protected ConcurrentDictionary<Guid, IEnumerable<BookingEntity>> bookingsByRideId = new ConcurrentDictionary<Guid, IEnumerable<BookingEntity>>();
 
