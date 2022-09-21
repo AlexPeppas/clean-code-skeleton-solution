@@ -19,6 +19,12 @@ namespace GotSpaceSolution.Core
             await bookingRepository.CreateAsync(entity, cancellationToken);
         }
 
+        public void CancelBooking()
+        {
+            // revert number of seats 
+            // isDeleted = true for the corresponding booking
+        }
+
         public async Task<BookingEntity> ReadAsync(Guid id, CancellationToken cancellationToken)
         {
             var bookingRepository = this.repositoryProvider.GetRepository<BookingsRepository>(nameof(BookingsRepository));

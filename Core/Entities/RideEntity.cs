@@ -12,8 +12,10 @@ namespace GotSpaceSolution.Core
 
         public DateTime RideTime { get; set; }
 
-        public int NumberOfSeats { get; set; }
+        public int RequestedNumberOfSeats { get; set; }
 
+        public int TotalNumberOfSeats { get; set; }
+        
         public bool OnlyWomen { get; set; }
 
         public string SourceName { get; set; }

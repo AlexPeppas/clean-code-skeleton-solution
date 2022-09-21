@@ -25,6 +25,19 @@ namespace GotSpaceSolution.Core
             await ridesRepository.CreateAsync(entity, cancellationToken);
         }
 
+        public void JoinRide()
+        {
+            //findRideById
+            //check if sufficient number of Seats
+            //create a new Booking
+            
+        }
+
+        public void CancelRide()
+        {
+
+        }
+
         public async Task<IEnumerable<RideEntity>> SearchFilteredRidesAsync(FilteredRides filter, CancellationToken cancellationToken)
         {
             var ridesRepository = this.repositoryProvider.GetRepository<RidesRepository>(nameof(RidesRepository));
