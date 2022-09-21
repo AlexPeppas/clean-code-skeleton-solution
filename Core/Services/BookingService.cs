@@ -31,6 +31,8 @@ namespace GotSpaceSolution.Core
 
         public async Task CancelBookingAsync(Guid id, CancellationToken cancellationToken)
         {
+            var bookingRepository = this.repositoryProvider.GetRepository<BookingsRepository>(nameof(BookingsRepository));
+
             var entity = await this.ReadAsync(id, cancellationToken);
             var updateSeatsDto = new UpdateSeatsDto
             {
@@ -40,6 +42,8 @@ namespace GotSpaceSolution.Core
             };
             await this.UpdateRideAllocatedSeats(updateSeatsDto, cancellationToken);
             entity.IsDeleted = true;
+          
+            await bookingRepository.UpdateAsync(entity, cancellationToken);
         }
 
         public async Task<BookingEntity> ReadAsync(Guid id, CancellationToken cancellationToken)
@@ -67,6 +71,10 @@ namespace GotSpaceSolution.Core
             {
                 rideEntity.AllocatedNumberOfSeats = rideEntity.AllocatedNumberOfSeats - bookingEntity.NumberOfSeats + newNumberOfSeats;
                 bookingEntity.NumberOfSeats = newNumberOfSeats;
+                
+                await bookingRepository.UpdateAsync(bookingEntity, cancellationToken);
+                await rideRepository.UpdateAsync(rideEntity, cancellationToken);
+
                 return true;
             }
             return false;
