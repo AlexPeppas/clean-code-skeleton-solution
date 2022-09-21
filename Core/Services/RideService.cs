@@ -23,6 +23,16 @@ namespace GotSpaceSolution.Core
             
             var ridesRepository = this.repositoryProvider.GetRepository<RidesRepository>(nameof(RidesRepository));
             await ridesRepository.CreateAsync(entity, cancellationToken);
+
+            var bookingsRepository = this.repositoryProvider.GetRepository<BookingsRepository>(nameof(BookingsRepository));
+            var booking = new BookingEntity
+            {
+                NumberOfSeats = entity.AllocatedNumberOfSeats,
+                User = joinOptions.User,
+                Ride = entity
+            };
+
+            await bookingsRepository.CreateAsync(booking, cancellationToken);
         }
 
         public async Task<bool> JoinRide(JoinRide joinOptions, CancellationToken cancellationToken)
@@ -33,7 +43,19 @@ namespace GotSpaceSolution.Core
             
             if (joinOptions.NumberOfSeatsRequested <= availableNumberOfSeats)
             {
-                //create a new Booking
+                var bookingsRepository = this.repositoryProvider.GetRepository<BookingsRepository>(nameof(BookingsRepository));
+                var booking = new BookingEntity
+                {
+                    NumberOfSeats = joinOptions.NumberOfSeatsRequested,
+                    User = joinOptions.User,
+                    Ride = ride
+                };
+
+                await bookingsRepository.CreateAsync(booking, cancellationToken);
+
+                ride.AllocatedNumberOfSeats += joinOptions.NumberOfSeatsRequested;
+                await ridesRepository.UpdateAsync(ride, cancellationToken);
+                
                 return true;
             }
             return false;

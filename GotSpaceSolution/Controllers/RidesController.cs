@@ -28,7 +28,7 @@ namespace GotSpaceSolution.Controllers
                 TotalNumberOfSeats = entity.TotalNumberOfSeats,
                 OnlyWomen = entity.OnlyWomen,
                 CreatedDate = DateTime.UtcNow,
-                CreatedBy = entity.CreatedBy,
+                UserId = entity.CreatedBy.UserId,
                 RideTime = entity.RideActivation,
             };
 

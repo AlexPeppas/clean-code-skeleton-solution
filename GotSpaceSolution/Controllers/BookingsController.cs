@@ -16,14 +16,14 @@ namespace GotSpaceSolution.Controllers
             this.bookingService = bookingService;
         }
 
-        [HttpPost("/CreateBooking")]
+        [HttpPost("/createBooking")]
         public async Task<IActionResult> CreateBooking(BookingEntity entity, CancellationToken cancellationToken = default)
         {
             await bookingService.CreateNewBookingAsync(entity, cancellationToken);
             return Ok();
         }
 
-        [HttpGet("/GetBooking")]
+        [HttpGet("/getBooking")]
         public async Task<IActionResult> GetBooking(Guid id, CancellationToken cancellationToken = default)
         {
             try

@@ -16,6 +16,9 @@ namespace GotSpaceSolution.Infrastructure
             if (entity.Id == Guid.Empty)
                 entity.Id = Guid.NewGuid();
 
+            if (entity.Timestamp == default)
+                entity.Timestamp = DateTime.UtcNow;
+
             localStore.TryAdd(entity.Id, entity);
 
             await Task.CompletedTask; // dummy to trick async with await. Remove when actualy SQL integration applies

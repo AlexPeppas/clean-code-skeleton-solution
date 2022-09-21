@@ -17,14 +17,14 @@ namespace GotSpaceSolution.Controllers
             this.userService = userService;
         }
 
-        [HttpPost("/CreateUser")]
+        [HttpPost("/createUser")]
         public async Task<IActionResult> CreateUser(UserEntity entity, CancellationToken cancellationToken = default)
         {
             await userService.CreateNewUserAsync(entity, cancellationToken);
             return Ok();
         }
 
-        [HttpGet ("/GetUser")]
+        [HttpGet ("/getUser")]
         public async Task<IActionResult> GetUser(string userName, CancellationToken cancellationToken = default)
         {
             try
@@ -38,7 +38,7 @@ namespace GotSpaceSolution.Controllers
             }
         }
 
-        [HttpGet("/LoginUser")]
+        [HttpGet("/loginUser")]
         public async Task<IActionResult> LoginUser(string userName, string password, CancellationToken cancellationToken = default)
         {
             try

@@ -18,8 +18,13 @@ namespace GotSpaceSolution.Core
             entity.IsDeleted = false;
 
             var bookingRepository = this.repositoryProvider.GetRepository<BookingsRepository>(nameof(BookingsRepository));
-
-            await this.UpdateRideAllocatedSeats(entity.Ride.Id, entity.NumberOfSeats, true, cancellationToken);
+            var updateSeatsDto = new UpdateSeatsDto
+            {
+                RideId = entity.Ride.Id,
+                BookingNumberOfSeats = entity.NumberOfSeats,
+                ToAdd = true
+            };
+            await this.UpdateRideAllocatedSeats(updateSeatsDto, cancellationToken);
 
             await bookingRepository.CreateAsync(entity, cancellationToken);
         }
@@ -27,13 +32,14 @@ namespace GotSpaceSolution.Core
         public async void CancelBooking(Guid id, CancellationToken cancellationToken)
         {
             var entity = await this.ReadAsync(id, cancellationToken);
-            await this.UpdateRideAllocatedSeats(entity.Ride.Id, entity.NumberOfSeats, false, cancellationToken);
+            var updateSeatsDto = new UpdateSeatsDto
+            {
+                RideId = entity.Ride.Id,
+                BookingNumberOfSeats = entity.NumberOfSeats,
+                ToAdd = false
+            };
+            await this.UpdateRideAllocatedSeats(updateSeatsDto, cancellationToken);
             entity.IsDeleted = true;
-
-
-            // lookup ride with rideId from bookingENtity.Ride.Id
-            // revert number of seats 
-            // isDeleted = true for the corresponding booking
         }
 
         public async Task<BookingEntity> ReadAsync(Guid id, CancellationToken cancellationToken)
@@ -42,11 +48,13 @@ namespace GotSpaceSolution.Core
             return await bookingRepository.ReadAsync(id, cancellationToken);
         }
 
-        private async Task UpdateRideAllocatedSeats(Guid rideId, int bookingNumberOfSeats, bool toAdd, CancellationToken cancellationToken)
+        private async Task UpdateRideAllocatedSeats(UpdateSeatsDto updateSeatsDto, CancellationToken cancellationToken)
         {
             var ridesRepository = this.repositoryProvider.GetRepository<RidesRepository>(nameof(RidesRepository));
-            var ride = await ridesRepository.ReadAsync(rideId, cancellationToken);
-            ride.AllocatedNumberOfSeats = toAdd ? ride.AllocatedNumberOfSeats += bookingNumberOfSeats : ride.AllocatedNumberOfSeats -= bookingNumberOfSeats;
+            var ride = await ridesRepository.ReadAsync(updateSeatsDto.RideId, cancellationToken);
+            ride.AllocatedNumberOfSeats = updateSeatsDto.ToAdd 
+                ? ride.AllocatedNumberOfSeats += updateSeatsDto.BookingNumberOfSeats
+                : ride.AllocatedNumberOfSeats -= updateSeatsDto.BookingNumberOfSeats;
         }
     }
 }

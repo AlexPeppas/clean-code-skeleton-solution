@@ -4,7 +4,8 @@ namespace GotSpaceSolution.Core
 {
     public sealed class RideEntity : BaseEntity
     {
-        public UserEntity CreatedBy { get; set; } 
+        //public UserEntity CreatedBy { get; set; } 
+        public Guid UserId { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
