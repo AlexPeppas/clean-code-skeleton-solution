@@ -48,6 +48,12 @@ namespace GotSpaceSolution.Core
             return await bookingRepository.ReadAsync(id, cancellationToken);
         }
 
+        public async Task<IEnumerable<BookingEntity>> ReadAsyncByUserId(Guid userId, CancellationToken cancellationToken)
+        {
+            var bookingRepository = this.repositoryProvider.GetRepository<BookingsRepository>(nameof(BookingsRepository));
+            return await bookingRepository.ReadAsyncByUserId(userId, cancellationToken);
+        }
+
         public async Task CancelBookingsByRideIdAsync(Guid rideId, CancellationToken cancellationToken)
         {
 

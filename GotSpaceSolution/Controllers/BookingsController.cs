@@ -37,6 +37,20 @@ namespace GotSpaceSolution.Controllers
             }
         }
 
+        [HttpGet("/getBookingsByUserId")]
+        public async Task<IActionResult> GetBookingByUserId(Guid userId, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                var bookingEntities = await bookingService.ReadAsyncByUserId(userId, cancellationToken);
+                return Ok(bookingEntities);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
+
         [HttpDelete("/CancelBooking")]
         public async Task CancelBooking(Guid id, CancellationToken cancellationToken = default)
         {
