@@ -19,15 +19,8 @@ namespace GotSpaceSolution.Controllers
         [HttpPost("/CreateBooking")]
         public async Task<IActionResult> CreateBooking(BookingEntity entity, CancellationToken cancellationToken = default)
         {
-            try
-            {
-                var bookingEntity = await bookingService.CreateNewBookingAsync(entity, cancellationToken);
-                return Ok(bookingEntity);
-            }
-            catch (Exception)
-            {
-                return NotFound();
-            }
+            await bookingService.CreateNewBookingAsync(entity, cancellationToken);
+            return Ok();
         }
 
         [HttpGet("/GetBooking")]

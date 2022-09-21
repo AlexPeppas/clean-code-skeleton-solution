@@ -10,13 +10,13 @@ namespace GotSpaceSolution.Core
             this.repositoryProvider = repositoryProvider;
         }
 
-        public async Task<BookingEntity> CreateNewBookingAsync(BookingEntity entity, CancellationToken cancellationToken)
+        public async Task CreateNewBookingAsync(BookingEntity entity, CancellationToken cancellationToken)
         {
             entity.Timestamp = DateTime.UtcNow;
             entity.IsDeleted = false;
 
             var bookingRepository = this.repositoryProvider.GetRepository<BookingsRepository>(nameof(BookingsRepository));
-            return await bookingRepository.CreateAsync(entity, cancellationToken);
+            await bookingRepository.CreateAsync(entity, cancellationToken);
         }
 
         public async Task<BookingEntity> ReadAsync(Guid id, CancellationToken cancellationToken)

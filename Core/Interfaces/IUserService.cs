@@ -3,7 +3,7 @@ namespace GotSpaceSolution.Core
 {
     public interface IUserService
     {
-        Task<UserEntity> CreateNewUserAsync(UserEntity entity, CancellationToken cancellationToken);
+        Task CreateNewUserAsync(UserEntity entity, CancellationToken cancellationToken);
 
         Task<UserEntity> ReadAsyncByUserName(string userName, CancellationToken cancellationToken);
 

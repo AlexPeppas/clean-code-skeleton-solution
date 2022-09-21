@@ -2,7 +2,7 @@
 {
     public interface IBookingService
     {
-        Task<BookingEntity> CreateNewBookingAsync(BookingEntity entity, CancellationToken cancellationToken);
+        Task CreateNewBookingAsync(BookingEntity entity, CancellationToken cancellationToken);
 
         Task<BookingEntity> ReadAsync(Guid id, CancellationToken cancellationToken);
     }
