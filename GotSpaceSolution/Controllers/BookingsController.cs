@@ -1,4 +1,5 @@
 using GotSpaceSolution.Core;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GotSpaceSolution.Controllers
@@ -49,6 +50,17 @@ namespace GotSpaceSolution.Controllers
             {
                 NotFound();
             }
+        }
+
+        [HttpPost("/update")]
+        public async Task<IActionResult> UpdateAsync(Guid id, int newNumberOfSeats, CancellationToken cancellationToken)
+        {
+            var updated = await bookingService.UpdateAsync(id, newNumberOfSeats, cancellationToken);
+
+            if (updated)
+                return Ok();
+
+            return BadRequest("There are not sufficient seats for your request");
         }
     }
 }

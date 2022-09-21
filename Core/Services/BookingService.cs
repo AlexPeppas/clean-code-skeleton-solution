@@ -53,11 +53,30 @@ namespace GotSpaceSolution.Core
 
         }
 
+        public async Task<bool> UpdateAsync(Guid id, int newNumberOfSeats, CancellationToken cancellationToken)
+        {
+            var bookingRepository = this.repositoryProvider.GetRepository<BookingsRepository>(nameof(BookingsRepository));
+            var bookingEntity = await bookingRepository.ReadAsync(id, cancellationToken);
+
+            var rideRepository = this.repositoryProvider.GetRepository<RidesRepository>(nameof(RidesRepository));
+            var rideEntity = await rideRepository.ReadAsync(bookingEntity.RideId, cancellationToken);
+           
+            var availableNumberOfSeats = rideEntity.TotalNumberOfSeats - rideEntity.AllocatedNumberOfSeats + bookingEntity.NumberOfSeats;
+
+            if (newNumberOfSeats <= availableNumberOfSeats)
+            {
+                rideEntity.AllocatedNumberOfSeats = rideEntity.AllocatedNumberOfSeats - bookingEntity.NumberOfSeats + newNumberOfSeats;
+                bookingEntity.NumberOfSeats = newNumberOfSeats;
+                return true;
+            }
+            return false;
+        }
+
         private async Task UpdateRideAllocatedSeats(UpdateSeatsDto updateSeatsDto, CancellationToken cancellationToken)
         {
             var ridesRepository = this.repositoryProvider.GetRepository<RidesRepository>(nameof(RidesRepository));
             var ride = await ridesRepository.ReadAsync(updateSeatsDto.RideId, cancellationToken);
-            ride.AllocatedNumberOfSeats = updateSeatsDto.ToAdd 
+            ride.AllocatedNumberOfSeats = updateSeatsDto.ToAdd
                 ? ride.AllocatedNumberOfSeats += updateSeatsDto.BookingNumberOfSeats
                 : ride.AllocatedNumberOfSeats -= updateSeatsDto.BookingNumberOfSeats;
         }

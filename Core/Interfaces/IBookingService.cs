@@ -8,6 +8,8 @@
 
         Task CancelBookingAsync(Guid id, CancellationToken cancellationToken);
 
+        Task<bool> UpdateAsync(Guid id, int newNumberOfSeats, CancellationToken cancellationToken);
+
         Task CancelBookingsByRideIdAsync (Guid rideId, CancellationToken cancellationToken);
     }
 }
