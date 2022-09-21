@@ -65,6 +65,7 @@ namespace GotSpaceSolution.Core
 
             if (newNumberOfSeats <= availableNumberOfSeats)
             {
+                bookingEntity.NumberOfSeats = newNumberOfSeats;
                 rideEntity.AllocatedNumberOfSeats = newNumberOfSeats;
                 return true;
             }
