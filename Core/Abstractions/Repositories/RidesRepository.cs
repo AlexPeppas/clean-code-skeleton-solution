@@ -38,9 +38,10 @@ namespace GotSpaceSolution.Core
                     filteredEntities = filteredEntities.Where(entity => entity.RideTime >= filter.RideTime).ToList();
                 }
 
-                if (filter.NumberOfSeats != null)
+                if (filter.AvailableNumberOfSeats != null)
                 {
-                    filteredEntities = filteredEntities.Where(entity => entity.NumberOfSeats >= filter.NumberOfSeats).ToList();
+                    filteredEntities = filteredEntities.Where(entity => 
+                    (entity.TotalNumberOfSeats - entity.AllocatedNumberOfSeats) >= filter.AvailableNumberOfSeats).ToList();
                 }
             }
 

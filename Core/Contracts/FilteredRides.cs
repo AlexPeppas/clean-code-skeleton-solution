@@ -12,8 +12,8 @@ namespace GotSpaceSolution.Core
         [JsonProperty(PropertyName = "destinationName", Required = Required.AllowNull)]
         public string? DestinationName { get; set; }
 
-        [JsonProperty(PropertyName = "numberOfSeats", Required = Required.AllowNull)]
-        public int? NumberOfSeats { get; set; }
+        [JsonProperty(PropertyName = "availableNumberOfSeats", Required = Required.AllowNull)]
+        public int? AvailableNumberOfSeats { get; set; }
 
         [JsonProperty(PropertyName = "rideActivation", Required = Required.AllowNull)]
         public DateTime? RideTime { get; set; }

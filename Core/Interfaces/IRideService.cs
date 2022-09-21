@@ -6,5 +6,9 @@
 
         Task<IEnumerable<RideEntity>> SearchFilteredRidesAsync(FilteredRides filter, CancellationToken cancellationToken);
 
+        Task<bool> CancelRide(Guid id, CancellationToken cancellationToken);
+
+        Task<bool> JoinRide(JoinRide joinOptions, CancellationToken cancellationToken);
+
     }
 }
