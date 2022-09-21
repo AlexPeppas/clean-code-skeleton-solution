@@ -40,7 +40,7 @@ namespace GotSpaceSolution.Core
 
                 if (filter.NumberOfSeats != null)
                 {
-                    filteredEntities = filteredEntities.Where(entity => entity.NumberOfSeats >= filter.NumberOfSeats).ToList();
+                    filteredEntities = filteredEntities.Where(entity => entity.AllocatedNumberOfSeats >= filter.NumberOfSeats).ToList();
                 }
             }
 
