@@ -5,5 +5,7 @@
         Task CreateNewBookingAsync(BookingEntity entity, CancellationToken cancellationToken);
 
         Task<BookingEntity> ReadAsync(Guid id, CancellationToken cancellationToken);
+
+        Task CancelBookingAsync(Guid id, CancellationToken cancellationToken);
     }
 }
