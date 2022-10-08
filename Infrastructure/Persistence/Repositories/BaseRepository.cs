@@ -1,4 +1,5 @@
 ﻿using GotSpaceSolution.Common;
+using Microsoft.Extensions.Logging;
 using System.Collections.Concurrent;
 
 namespace GotSpaceSolution.Infrastructure
@@ -6,6 +7,18 @@ namespace GotSpaceSolution.Infrastructure
     public abstract class BaseRepository<T> : IBaseRepository
         where T : BaseEntity, new()
     {
+        private readonly ILogger logger;
+
+        public BaseRepository(
+            IRepositoryContext context,
+            ILogger logger)
+        {
+            Context = context;
+            this.logger = logger;
+        }
+
+        protected IRepositoryContext Context { get; }
+
         protected ConcurrentDictionary<Guid, BaseEntity> localStore = new();
 
         public virtual async Task CreateAsync(T entity, CancellationToken cancellationToken)

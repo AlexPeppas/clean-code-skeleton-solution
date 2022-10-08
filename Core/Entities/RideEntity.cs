@@ -2,7 +2,7 @@
 
 namespace GotSpaceSolution.Core
 {
-    public sealed class RideEntity : BaseEntity
+    public class RideEntity : BaseEntity
     {
         public Guid UserId { get; set; }
 

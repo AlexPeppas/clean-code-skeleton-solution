@@ -1,11 +1,35 @@
-﻿using GotSpaceSolution.Common;
+﻿using GotSpace.Core;
+using GotSpaceSolution.Common;
 using GotSpaceSolution.Infrastructure;
-
+using Microsoft.Extensions.Logging;
+using System.Collections.Concurrent;
 
 namespace GotSpaceSolution.Core
 {
-    public class RidesRepository : BaseRepository<RideEntity>
+    public sealed class RidesRepository: BaseRepository<RideEntity>
     {
+        public RidesRepository(
+            IOrgRepositoryContext context,
+            ILogger<RidesRepository> logger) : base(context,logger)
+        {
+        }
+
+        private ConcurrentDictionary<string, RideEntity> rideStore = new();
+
+
+        public override async Task CreateAsync(RideEntity entity, CancellationToken cancellationToken)
+        {
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
+            if (entity.Id == Guid.Empty)
+                entity.Id = Guid.NewGuid();
+
+            rideStore.TryAdd(entity.UserId.ToString(), entity);
+            await base.CreateAsync(entity, cancellationToken);
+            await Task.CompletedTask; // dummy to trick async with await. Remove when actualy SQL integration applies
+        }
+
         public async Task<IEnumerable<RideEntity>> SearchFilteredRidesAsync (FilteredRides filter, CancellationToken cancellationToken)
         {
             if (filter is null)

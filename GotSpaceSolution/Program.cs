@@ -1,3 +1,4 @@
+using GotSpace.Core;
 using GotSpace.Infrastructure;
 using GotSpaceSolution.Common;
 using GotSpaceSolution.Core;
@@ -12,9 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IRepositoryProvider, RepositoryProvider>();
-builder.Services.AddSingleton<IBookingService, BookingService>();
 builder.Services.AddSingleton<IRideService, RideService>();
-builder.Services.AddSingleton<IUserService, UserService>();
+builder.Services.AddSingleton<IOrgRepositoryContext, OrgRepositoryContext>();
 
 var app = builder.Build();
 

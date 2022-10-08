@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GotSpaceSolution.Core
 {
-    public class UpdateSeatsDto //Data Transfer Object
+    public class UpdateSeatsDto
     {
         public Guid RideId { get; set; }
 
